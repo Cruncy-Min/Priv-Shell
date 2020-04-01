@@ -157,7 +157,6 @@ if(isset($_GET['cmd']))
   }else{
     echo "Function Disable!";
   }
-  header("location:?cmd");
 }
 ?>
 
