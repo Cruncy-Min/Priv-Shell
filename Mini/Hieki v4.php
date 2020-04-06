@@ -1,6 +1,6 @@
 <?php 
 $user = "hieki";
-$pass = "katyusha";
+$pass = "password";
 
 session_start();
 
